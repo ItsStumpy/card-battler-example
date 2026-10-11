@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c5o2jogqyhn5i"]
+
+[ext_resource type="Script" uid="uid://bk6nhi2p2umak" path="res://Scripts/Character/character.gd" id="1_nv3ih"]
+[ext_resource type="SpriteFrames" uid="uid://b23f0o43qg5nx" path="res://Assets/Sprites/Player/player.tres" id="2_ipqrv"]
+[ext_resource type="Script" uid="uid://b4xu720eww3hj" path="res://Scripts/Character/character_animation.gd" id="3_c36b5"]
+[ext_resource type="Script" uid="uid://b1b33h0lin18s" path="res://Scripts/health_bar.gd" id="4_1l7j3"]
+[ext_resource type="FontFile" uid="uid://cgq2d30r1q5ke" path="res://Assets/Font/PTSerif-Bold.ttf" id="5_yo31i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpyuh"]
+bg_color = Color(0.24962571, 0.14256275, 0.19199342, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60xd1"]
+bg_color = Color(0.857475, 0.19193453, 0.27580494, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fpyuh"]
+font = ExtResource("5_yo31i")
+font_size = 4
+
+[node name="Character" type="Node2D" unique_id=2024712500]
+script = ExtResource("1_nv3ih")
+
+[node name="CharacterAnimation" type="AnimatedSprite2D" parent="." unique_id=125958444]
+position = Vector2(0, -13)
+sprite_frames = ExtResource("2_ipqrv")
+animation = &"Idle"
+autoplay = "Idle"
+script = ExtResource("3_c36b5")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=400715942]
+offset_left = -21.0
+offset_top = -49.0
+offset_right = 19.0
+offset_bottom = -44.0
+theme_override_styles/background = SubResource("StyleBoxFlat_fpyuh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_60xd1")
+value = 50.0
+show_percentage = false
+script = ExtResource("4_1l7j3")
+
+[node name="HealthText" type="Label" parent="HealthBar" unique_id=1280139476]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.16666675
+offset_bottom = 0.16666698
+grow_horizontal = 2
+grow_vertical = 2
+text = "100 / 100"
+label_settings = SubResource("LabelSettings_fpyuh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="animation_finished" from="CharacterAnimation" to="CharacterAnimation" method="_on_animation_finished"]

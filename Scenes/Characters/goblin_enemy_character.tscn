@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bjvq4ymi2uemi"]
+
+[ext_resource type="PackedScene" uid="uid://c5o2jogqyhn5i" path="res://Scenes/Characters/character.tscn" id="1_0gac6"]
+[ext_resource type="SpriteFrames" uid="uid://bd3ss0pl1bhb0" path="res://Assets/Sprites/Enemies/Goblin/goblin.tres" id="2_dxcs8"]
+
+[node name="GoblinEnemyCharacter" unique_id=2024712500 instance=ExtResource("1_0gac6")]
+max_health = 15
+
+[node name="CharacterAnimation" parent="." index="0" unique_id=125958444]
+position = Vector2(0, -26)
+sprite_frames = ExtResource("2_dxcs8")
+flip_h = true

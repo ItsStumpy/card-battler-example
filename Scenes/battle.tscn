@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bcwii6onpy5kd"]
+
+[ext_resource type="Texture2D" uid="uid://bs8gohlcpjbao" path="res://Assets/Sprites/Background/background.png" id="1_w7k78"]
+[ext_resource type="PackedScene" uid="uid://4gerhgtrtwc8" path="res://Scenes/Characters/player_character.tscn" id="3_1otgo"]
+[ext_resource type="PackedScene" uid="uid://bjvq4ymi2uemi" path="res://Scenes/Characters/goblin_enemy_character.tscn" id="3_1ruyk"]
+
+[node name="Main" type="Node2D" unique_id=1304417724]
+
+[node name="Environment" type="Node" parent="." unique_id=580607494]
+
+[node name="Background" type="Sprite2D" parent="Environment" unique_id=1911105885]
+z_index = -100
+position = Vector2(0, -20)
+texture = ExtResource("1_w7k78")
+
+[node name="Camera2D" type="Camera2D" parent="Environment" unique_id=1357442113]
+zoom = Vector2(3.65, 3.65)
+
+[node name="PlayerCharacter" parent="." unique_id=2024712500 instance=ExtResource("3_1otgo")]
+position = Vector2(-44, 18)
+
+[node name="GoblinEnemyCharacter" parent="." unique_id=515705052 instance=ExtResource("3_1ruyk")]
+position = Vector2(41, 18)
