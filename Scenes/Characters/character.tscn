@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://c5o2jogqyhn5i"]
 
 [ext_resource type="Script" uid="uid://bk6nhi2p2umak" path="res://Scripts/Character/character.gd" id="1_nv3ih"]
+[ext_resource type="AudioStream" uid="uid://7i4lujcv714w" path="res://Assets/Audio/heal.ogg" id="2_c36b5"]
 [ext_resource type="SpriteFrames" uid="uid://b23f0o43qg5nx" path="res://Assets/Sprites/Player/player.tres" id="2_ipqrv"]
 [ext_resource type="Script" uid="uid://b4xu720eww3hj" path="res://Scripts/Character/character_animation.gd" id="3_c36b5"]
-[ext_resource type="Script" uid="uid://b1b33h0lin18s" path="res://Scripts/health_bar.gd" id="4_1l7j3"]
+[ext_resource type="Script" uid="uid://b1b33h0lin18s" path="res://Scripts/Character/health_bar.gd" id="4_1l7j3"]
 [ext_resource type="FontFile" uid="uid://cgq2d30r1q5ke" path="res://Assets/Font/PTSerif-Bold.ttf" id="5_yo31i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpyuh"]
@@ -16,8 +17,13 @@ bg_color = Color(0.857475, 0.19193453, 0.27580494, 1)
 font = ExtResource("5_yo31i")
 font_size = 4
 
+[sub_resource type="Curve" id="Curve_fpyuh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Character" type="Node2D" unique_id=2024712500]
 script = ExtResource("1_nv3ih")
+healed_sfx = ExtResource("2_c36b5")
 
 [node name="CharacterAnimation" type="AnimatedSprite2D" parent="." unique_id=125958444]
 position = Vector2(0, -13)
@@ -50,5 +56,27 @@ text = "100 / 100"
 label_settings = SubResource("LabelSettings_fpyuh")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HealParticle" type="CPUParticles2D" parent="." unique_id=1088036375]
+position = Vector2(0, -15)
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+lifetime_randomness = 0.75
+emission_shape = 3
+emission_rect_extents = Vector2(12, 15)
+direction = Vector2(0, -1)
+gravity = Vector2(0, -100)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_fpyuh")
+color = Color(0.47999996, 0.9, 0.27, 1)
 
 [connection signal="animation_finished" from="CharacterAnimation" to="CharacterAnimation" method="_on_animation_finished"]

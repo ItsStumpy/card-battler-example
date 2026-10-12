@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://dlt132mjbn6yx"]
+
+[ext_resource type="Texture2D" uid="uid://bs8gohlcpjbao" path="res://Assets/Sprites/Background/background.png" id="1_cayip"]
+[ext_resource type="Script" uid="uid://c05gf67n8hdel" path="res://Scripts/Menu/menu.gd" id="1_wwsa2"]
+[ext_resource type="Script" uid="uid://dcpyqrqlmsvka" path="res://Scripts/Managers/camera_controller.gd" id="2_158mb"]
+[ext_resource type="FontFile" uid="uid://cgq2d30r1q5ke" path="res://Assets/Font/PTSerif-Bold.ttf" id="3_wwsa2"]
+[ext_resource type="FontFile" uid="uid://bfnnb3a8g0ttl" path="res://Assets/Font/PTSerif-Regular.ttf" id="4_158mb"]
+[ext_resource type="AudioStream" uid="uid://dhjl1hgc5somk" path="res://Assets/Audio/music.mp3" id="6_jsrd8"]
+[ext_resource type="Script" uid="uid://du1an5m64jk08" path="res://Scripts/Menu/level_button.gd" id="6_wbdvm"]
+[ext_resource type="Resource" uid="uid://cef7oxey71ad3" path="res://Levels/level_1.tres" id="7_7qvly"]
+[ext_resource type="Resource" uid="uid://b15vp5urxcfp4" path="res://Levels/level_2.tres" id="8_rfqti"]
+[ext_resource type="Resource" uid="uid://dotsqppw1u5as" path="res://Levels/level_boss.tres" id="9_g8i7c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fpyuh"]
+font = ExtResource("3_wwsa2")
+shadow_size = 2
+shadow_color = Color(0.7, 0, 0.11666689, 0.47058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwsa2"]
+bg_color = Color(0.28166673, 2.1358021e-07, 6.016344e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_158mb"]
+bg_color = Color(0.14409083, 1.015258e-07, 2.1057204e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbdvm"]
+bg_color = Color(0.35898823, 6.708223e-07, 1.2032687e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrd8"]
+bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
+
+[node name="Main" type="Node2D" unique_id=1920366078 node_paths=PackedStringArray("level_buttons")]
+script = ExtResource("1_wwsa2")
+level_buttons = [NodePath("Level1Button"), NodePath("Level2Button"), NodePath("BossButton")]
+
+[node name="Environment" type="Node" parent="." unique_id=1395083378]
+
+[node name="Background" type="Sprite2D" parent="Environment" unique_id=69469113]
+z_index = -100
+position = Vector2(0, -20)
+texture = ExtResource("1_cayip")
+
+[node name="Camera2D" type="Camera2D" parent="Environment" unique_id=2106661014]
+zoom = Vector2(3.65, 3.65)
+script = ExtResource("2_158mb")
+
+[node name="Title" type="Label" parent="." unique_id=1614084640]
+offset_left = -77.0
+offset_top = -69.0
+offset_right = 76.0
+offset_bottom = -47.666664
+text = "Temu Slay the Spire"
+label_settings = SubResource("LabelSettings_fpyuh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level1Button" type="Button" parent="." unique_id=1624948407]
+offset_left = -77.0
+offset_top = -9.0
+offset_right = -35.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("4_158mb")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_wwsa2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_158mb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jsrd8")
+text = "Lvl 1"
+script = ExtResource("6_wbdvm")
+level_data = ExtResource("7_7qvly")
+
+[node name="Level2Button" type="Button" parent="." unique_id=1202861153]
+offset_left = -22.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("4_158mb")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_wwsa2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_158mb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jsrd8")
+text = "Lvl 2"
+script = ExtResource("6_wbdvm")
+level_data = ExtResource("8_rfqti")
+
+[node name="BossButton" type="Button" parent="." unique_id=193617467]
+offset_left = 33.0
+offset_top = -9.0
+offset_right = 75.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("4_158mb")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_wwsa2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_158mb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jsrd8")
+text = "Boss"
+script = ExtResource("6_wbdvm")
+level_data = ExtResource("9_g8i7c")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1603173893]
+position = Vector2(-33.10811, 0)
+scale = Vector2(0.5027027, 0.2)
+points = PackedVector2Array(-1.6666679, 0, 20, 0)
+width = 5.0
+default_color = Color(0.31966022, 0.54702735, 0.30049485, 1)
+
+[node name="Line2D2" type="Line2D" parent="." unique_id=1180785087]
+position = Vector2(22, 0)
+scale = Vector2(0.5027027, 0.2)
+points = PackedVector2Array(-1.6666679, 0, 20, 0)
+width = 5.0
+default_color = Color(0.31966022, 0.54702735, 0.30049485, 1)
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1818138954]
+stream = ExtResource("6_jsrd8")
+volume_db = -25.0
+autoplay = true

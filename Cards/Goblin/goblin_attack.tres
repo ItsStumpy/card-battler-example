@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AttackCardData" format=3 uid="uid://c7tfjhymsanyp"]
+
+[ext_resource type="Texture2D" uid="uid://c8ycdkjxyyl11" path="res://Assets/Sprites/Card/icon_attack.png" id="1_qfhsb"]
+[ext_resource type="Script" uid="uid://bwjout466n6hq" path="res://Scripts/Cards/attack_card_data.gd" id="1_ujssr"]
+
+[resource]
+script = ExtResource("1_ujssr")
+attack_damage = 5
+icon = ExtResource("1_qfhsb")
+metadata/_custom_type_script = "uid://bwjout466n6hq"

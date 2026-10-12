@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://b15vp5urxcfp4"]
+
+[ext_resource type="PackedScene" uid="uid://bjvq4ymi2uemi" path="res://Scenes/Characters/goblin_enemy_character.tscn" id="1_e3k30"]
+[ext_resource type="Script" uid="uid://cr4vf6q0qwsjj" path="res://Scripts/level_data.gd" id="1_h3rs5"]
+
+[resource]
+script = ExtResource("1_h3rs5")
+enemy_scene = ExtResource("1_e3k30")
+metadata/_custom_type_script = "uid://cr4vf6q0qwsjj"

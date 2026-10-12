@@ -1,49 +1,65 @@
 class_name Character
 extends Node
 
-
 signal HealthUpdated
-
 
 var current_health: int
 @export var max_health: int = 20
 @export var is_player: bool = false
 @export var attack_delay: float = 0.3
 
-@onready var anim: CharacterAnimation = $CharacterAnimation
+@export var damaged_sfx: AudioStream
+@export var healed_sfx: AudioStream
 
+@onready var anim: CharacterAnimation = $CharacterAnimation
+@onready var heal_particle: CPUParticles2D = $HealParticle
+
+var audio_manager: AudioManager:
+    get: return ManagerRegistry.get_manager("audio_manager")
 
 func _ready():
-    current_health = max_health
+    if is_player and GameData.current_health > 0:
+        current_health = GameData.current_health
+    else:
+        current_health = max_health
+
     HealthUpdated.emit()
-    # play "Idle" animation just to be safe
     anim.play(anim.IDLE_ANIM)
 
-
 func take_damage(amount: int):
-    current_health -= amount
+    # Optional:
+    # - Add this if a character takes a second hit after technically being dead already.
+    # - We don't want this to fire twice if a character dies and an attack is trying to resolve.
+    #if current_health <= 0:
+        #return
+
+    current_health = clamp(current_health - amount, 0, max_health)
     HealthUpdated.emit()
 
-    # play "Hit" animation
     anim.play(anim.HIT_ANIM)
+    audio_manager.play(damaged_sfx)
+
+    ManagerRegistry.get_manager("camera_controller").shake(3)
 
     if current_health <= 0:
         die()
 
-
+# Called when an attack card is casted
 func attack(target: Character, damage_amount: int):
     # play "Attack" animation (sword hits on the 4th frame so we need to delay damage)
     anim.play(anim.ATTACK_ANIM)
     await get_tree().create_timer(attack_delay).timeout
     target.take_damage(damage_amount)
 
-
+# Called when a heal card is casted
 func heal(amount: int):
     # never goes above max health when healing or below zero
     current_health = clamp(current_health + amount, 0, max_health)
+    heal_particle.emitting = true
+    audio_manager.play(healed_sfx)
     HealthUpdated.emit()
 
-
+# Called when health reaches 0 - end the battle
 func die():
-    # play "Death" animation
     anim.play(anim.DEATH_ANIM)
+    ManagerRegistry.get_manager("game_manager").end_game(self)

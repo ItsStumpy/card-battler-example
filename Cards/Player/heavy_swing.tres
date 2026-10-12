@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttackCardData" format=3 uid="uid://bxdtbkto5dveb"]
+
+[ext_resource type="Texture2D" uid="uid://c8ycdkjxyyl11" path="res://Assets/Sprites/Card/icon_attack.png" id="1_8k4to"]
+[ext_resource type="Script" uid="uid://bwjout466n6hq" path="res://Scripts/Cards/attack_card_data.gd" id="2_872j0"]
+
+[resource]
+script = ExtResource("2_872j0")
+attack_damage = 7
+display_name = "Heavy Swing"
+cost = 2
+icon = ExtResource("1_8k4to")
+metadata/_custom_type_script = "uid://bwjout466n6hq"

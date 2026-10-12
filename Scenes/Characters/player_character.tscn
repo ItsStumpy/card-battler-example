@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://4gerhgtrtwc8"]
 
 [ext_resource type="PackedScene" uid="uid://c5o2jogqyhn5i" path="res://Scenes/Characters/character.tscn" id="1_l560e"]
+[ext_resource type="AudioStream" uid="uid://byx654qsvr7tm" path="res://Assets/Audio/player_damaged.ogg" id="2_c2rcm"]
 
 [node name="PlayerCharacter" unique_id=2024712500 instance=ExtResource("1_l560e")]
 is_player = true
-
-[node name="CharacterAnimation" parent="." index="0" unique_id=125958444]
-animation = &"Idle"
+damaged_sfx = ExtResource("2_c2rcm")

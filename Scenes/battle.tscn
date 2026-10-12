@@ -1,10 +1,166 @@
 [gd_scene format=3 uid="uid://bcwii6onpy5kd"]
 
+[ext_resource type="Script" uid="uid://dhdrl2nd8wtk2" path="res://Scripts/Managers/ui_manager.gd" id="1_heh15"]
+[ext_resource type="Script" uid="uid://cp4bua3d28trx" path="res://Scripts/Managers/card_interactor.gd" id="1_k7mbx"]
+[ext_resource type="Texture2D" uid="uid://dl6lrkbxmqag1" path="res://Assets/Sprites/UI/mana_bg.png" id="1_rssjf"]
+[ext_resource type="Script" uid="uid://pbe4ci6sjtea" path="res://Scripts/Managers/card_manager.gd" id="1_upb72"]
 [ext_resource type="Texture2D" uid="uid://bs8gohlcpjbao" path="res://Assets/Sprites/Background/background.png" id="1_w7k78"]
+[ext_resource type="Script" uid="uid://don3gqtcfjd3u" path="res://Scripts/Cards/card_data.gd" id="2_qeyqd"]
 [ext_resource type="PackedScene" uid="uid://4gerhgtrtwc8" path="res://Scenes/Characters/player_character.tscn" id="3_1otgo"]
 [ext_resource type="PackedScene" uid="uid://bjvq4ymi2uemi" path="res://Scenes/Characters/goblin_enemy_character.tscn" id="3_1ruyk"]
+[ext_resource type="Resource" uid="uid://8804pry7bxs2" path="res://Cards/Player/health_potion.tres" id="4_k7mbx"]
+[ext_resource type="Texture2D" uid="uid://caarx182eqee8" path="res://Assets/Sprites/UI/draw_pile.png" id="4_vd41i"]
+[ext_resource type="FontFile" uid="uid://cgq2d30r1q5ke" path="res://Assets/Font/PTSerif-Bold.ttf" id="5_pd5xk"]
+[ext_resource type="Resource" uid="uid://ki61cqmxwhg6" path="res://Cards/Player/jab.tres" id="5_qeyqd"]
+[ext_resource type="PackedScene" uid="uid://dgr2hn45a008v" path="res://Scenes/card.tscn" id="5_upb72"]
+[ext_resource type="FontFile" uid="uid://bfnnb3a8g0ttl" path="res://Assets/Font/PTSerif-Regular.ttf" id="6_f6xt6"]
+[ext_resource type="Texture2D" uid="uid://ddj8rgp473fy6" path="res://Assets/Sprites/UI/discard_pile.png" id="6_nne6o"]
+[ext_resource type="Texture2D" uid="uid://c2spdpfpy8plj" path="res://Assets/Sprites/UI/end_turn_button.png" id="7_fonr4"]
+[ext_resource type="Script" uid="uid://bs8pdary6i8no" path="res://Scripts/Managers/game_manager.gd" id="7_k7mbx"]
+[ext_resource type="Resource" uid="uid://bxdtbkto5dveb" path="res://Cards/Player/heavy_swing.tres" id="12_kcxpu"]
+[ext_resource type="Texture2D" uid="uid://bl8uj3xg8jp2i" path="res://Assets/Sprites/Background/character_highlight.png" id="15_7vlph"]
+[ext_resource type="Script" uid="uid://bt5eik6o7y0xm" path="res://Scripts/Managers/audio_manager.gd" id="16_486ce"]
+[ext_resource type="Script" uid="uid://dcpyqrqlmsvka" path="res://Scripts/Managers/camera_controller.gd" id="18_emx8f"]
+[ext_resource type="AudioStream" uid="uid://dhjl1hgc5somk" path="res://Assets/Audio/music.mp3" id="20_387br"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_60xd1"]
+font = ExtResource("6_f6xt6")
+outline_size = 4
+outline_color = Color(0.33333334, 0.2901961, 0.54509807, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sh855"]
+font = ExtResource("5_pd5xk")
+font_size = 8
+outline_size = 2
+outline_color = Color(0.078431375, 0.25490198, 0.078431375, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fonr4"]
+font = ExtResource("5_pd5xk")
+font_size = 8
+outline_size = 2
+outline_color = Color(0.25490198, 0.101960786, 0.078431375, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5caxw"]
+font = ExtResource("6_f6xt6")
+font_size = 8
+outline_size = 2
+outline_color = Color(0.6627451, 0.3137255, 0.90588236, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_486ce"]
+blend_mode = 1
 
 [node name="Main" type="Node2D" unique_id=1304417724]
+
+[node name="UIManager" type="Node" parent="." unique_id=879236684]
+script = ExtResource("1_heh15")
+
+[node name="ManaUI" type="Node2D" parent="UIManager" unique_id=988407173]
+position = Vector2(-143, -74)
+
+[node name="ManaBg" type="Sprite2D" parent="UIManager/ManaUI" unique_id=100935369]
+texture = ExtResource("1_rssjf")
+
+[node name="ManaLabel" type="Label" parent="UIManager/ManaUI" unique_id=671710877]
+custom_minimum_size = Vector2(24, 24)
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 11.0
+text = "2/3"
+label_settings = SubResource("LabelSettings_60xd1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DrawPileUI" type="Node2D" parent="UIManager" unique_id=1299588776]
+position = Vector2(-135, 75)
+
+[node name="DrawPile" type="Sprite2D" parent="UIManager/DrawPileUI" unique_id=1374414449]
+texture = ExtResource("4_vd41i")
+
+[node name="DrawPileLabel" type="Label" parent="UIManager/DrawPileUI" unique_id=1600059572]
+custom_minimum_size = Vector2(16, 22)
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = 11.0
+text = "22"
+label_settings = SubResource("LabelSettings_sh855")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiscardPileUI" type="Node2D" parent="UIManager" unique_id=1703010426]
+position = Vector2(136, 75)
+
+[node name="DiscardPile" type="Sprite2D" parent="UIManager/DiscardPileUI" unique_id=1648674485]
+texture = ExtResource("6_nne6o")
+
+[node name="DiscardPileLabel" type="Label" parent="UIManager/DiscardPileUI" unique_id=293296773]
+custom_minimum_size = Vector2(16, 22)
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = 11.0
+text = "22"
+label_settings = SubResource("LabelSettings_fonr4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndTurnUI" type="Node2D" parent="UIManager" unique_id=1939568638]
+position = Vector2(136, -74)
+
+[node name="EndTurnButton" type="TextureButton" parent="UIManager/EndTurnUI" unique_id=1696285381]
+offset_left = -21.0
+offset_top = -12.0
+offset_right = 21.0
+offset_bottom = 12.0
+texture_normal = ExtResource("7_fonr4")
+
+[node name="EndTurnLabel" type="Label" parent="UIManager/EndTurnUI" unique_id=871784955]
+offset_left = -19.0
+offset_top = -6.0
+offset_right = 17.0
+offset_bottom = 5.0
+text = "End Turn"
+label_settings = SubResource("LabelSettings_5caxw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardManager" type="Node" parent="." unique_id=1818022567]
+script = ExtResource("1_upb72")
+player_deck = Array[ExtResource("2_qeyqd")]([ExtResource("5_qeyqd"), ExtResource("5_qeyqd"), ExtResource("4_k7mbx"), ExtResource("4_k7mbx"), ExtResource("12_kcxpu")])
+card_scene = ExtResource("5_upb72")
+x_offset = 30.0
+
+[node name="CardOrigin" type="Node2D" parent="CardManager" unique_id=537051658]
+position = Vector2(0, 56)
+
+[node name="CardSpawn" type="Node2D" parent="CardManager" unique_id=1707328943]
+position = Vector2(-143, 75)
+
+[node name="CardInteractor" type="Node2D" parent="." unique_id=1721381142]
+script = ExtResource("1_k7mbx")
+
+[node name="GameManager" type="Node" parent="." unique_id=472107177 node_paths=PackedStringArray("player", "enemy")]
+script = ExtResource("7_k7mbx")
+player = NodePath("../PlayerCharacter")
+enemy = NodePath("../GoblinEnemyCharacter")
+metadata/_custom_type_script = "uid://bs8pdary6i8no"
+
+[node name="CharacterHighlight" type="Node2D" parent="GameManager" unique_id=961039159]
+modulate = Color(1, 1, 1, 0.627451)
+z_index = -99
+material = SubResource("CanvasItemMaterial_486ce")
+position = Vector2(-44, 18)
+
+[node name="Sprite" type="Sprite2D" parent="GameManager/CharacterHighlight" unique_id=1365177232]
+position = Vector2(0, -36)
+texture = ExtResource("15_7vlph")
+
+[node name="EnemySpawn" type="Node2D" parent="GameManager" unique_id=2107430398]
+position = Vector2(41, 18)
+
+[node name="AudioManager" type="Node" parent="." unique_id=1080935652]
+script = ExtResource("16_486ce")
 
 [node name="Environment" type="Node" parent="." unique_id=580607494]
 
@@ -15,9 +171,19 @@ texture = ExtResource("1_w7k78")
 
 [node name="Camera2D" type="Camera2D" parent="Environment" unique_id=1357442113]
 zoom = Vector2(3.65, 3.65)
+script = ExtResource("18_emx8f")
 
 [node name="PlayerCharacter" parent="." unique_id=2024712500 instance=ExtResource("3_1otgo")]
 position = Vector2(-44, 18)
+healed_sfx = null
 
 [node name="GoblinEnemyCharacter" parent="." unique_id=515705052 instance=ExtResource("3_1ruyk")]
 position = Vector2(41, 18)
+healed_sfx = null
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=613776311]
+stream = ExtResource("20_387br")
+volume_db = -25.0
+autoplay = true
+
+[connection signal="pressed" from="UIManager/EndTurnUI/EndTurnButton" to="UIManager" method="_on_end_turn_button_pressed"]

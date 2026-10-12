@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HealCardData" format=3 uid="uid://yjnxvqnsu6e3"]
+
+[ext_resource type="Texture2D" uid="uid://hws53uor1dde" path="res://Assets/Sprites/Card/icon_heal.png" id="1_8hw6y"]
+[ext_resource type="Script" uid="uid://cd810yet3fly2" path="res://Scripts/Cards/heal_card_data.gd" id="1_ni6mp"]
+
+[resource]
+script = ExtResource("1_ni6mp")
+heal_amount = 4
+icon = ExtResource("1_8hw6y")
+metadata/_custom_type_script = "uid://cd810yet3fly2"

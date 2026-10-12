@@ -2,11 +2,45 @@
 
 [ext_resource type="PackedScene" uid="uid://c5o2jogqyhn5i" path="res://Scenes/Characters/character.tscn" id="1_0gac6"]
 [ext_resource type="SpriteFrames" uid="uid://bd3ss0pl1bhb0" path="res://Assets/Sprites/Enemies/Goblin/goblin.tres" id="2_dxcs8"]
+[ext_resource type="AudioStream" uid="uid://bq127qhuk2ans" path="res://Assets/Audio/enemy_damaged.ogg" id="2_rta8c"]
+[ext_resource type="Script" uid="uid://cl03e50yakgu4" path="res://Scripts/Enemy/enemy_ai.gd" id="3_ochns"]
+[ext_resource type="Script" uid="uid://don3gqtcfjd3u" path="res://Scripts/Cards/card_data.gd" id="4_3nvn6"]
+[ext_resource type="Resource" uid="uid://c7tfjhymsanyp" path="res://Cards/Goblin/goblin_attack.tres" id="5_duad4"]
+[ext_resource type="Resource" uid="uid://yjnxvqnsu6e3" path="res://Cards/Goblin/goblin_heal.tres" id="6_j6afl"]
+[ext_resource type="Resource" uid="uid://03ud3fuofnom" path="res://Cards/Goblin/goblin_heavy_attack.tres" id="7_6q66t"]
+[ext_resource type="Texture2D" uid="uid://c8ycdkjxyyl11" path="res://Assets/Sprites/Card/icon_attack.png" id="8_6q66t"]
+[ext_resource type="FontFile" uid="uid://cgq2d30r1q5ke" path="res://Assets/Font/PTSerif-Bold.ttf" id="9_rta8c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fpyuh"]
+font = ExtResource("9_rta8c")
+font_size = 4
+outline_size = 2
+outline_color = Color(0.1, 0.1, 0.1, 1)
 
 [node name="GoblinEnemyCharacter" unique_id=2024712500 instance=ExtResource("1_0gac6")]
 max_health = 15
+damaged_sfx = ExtResource("2_rta8c")
 
-[node name="CharacterAnimation" parent="." index="0" unique_id=125958444]
+[node name="EnemyAI" type="Node" parent="." index="0" unique_id=124848315]
+script = ExtResource("3_ochns")
+actions = Array[ExtResource("4_3nvn6")]([ExtResource("5_duad4"), ExtResource("6_j6afl"), ExtResource("7_6q66t")])
+
+[node name="CharacterAnimation" parent="." index="1" unique_id=125958444]
 position = Vector2(0, -26)
 sprite_frames = ExtResource("2_dxcs8")
 flip_h = true
+
+[node name="NextActionIcon" type="Sprite2D" parent="." index="3" unique_id=1093640249]
+position = Vector2(-25.000002, -47)
+scale = Vector2(0.37500024, 0.37500024)
+texture = ExtResource("8_6q66t")
+
+[node name="NextActionLabel" type="Label" parent="." index="4" unique_id=1703600100]
+offset_left = -26.0
+offset_top = -48.0
+offset_right = -23.0
+offset_bottom = -42.666668
+text = "5"
+label_settings = SubResource("LabelSettings_fpyuh")
+horizontal_alignment = 1
+vertical_alignment = 1

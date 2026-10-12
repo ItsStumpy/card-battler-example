@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Card Battler Example"
-run/main_scene="uid://bcwii6onpy5kd"
+run/main_scene="uid://dlt132mjbn6yx"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+ManagerRegistry="*uid://cpwq3inr1r34a"
+GameData="*uid://m5njx85xr1j5"
 
 [display]
 
